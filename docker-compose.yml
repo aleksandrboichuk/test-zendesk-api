@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  php:
+    build: ./docker/php
+    volumes:
+      - .:/var/www/html
+      - ./docker/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
